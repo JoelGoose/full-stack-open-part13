@@ -6,7 +6,7 @@ const { Op } = require('sequelize')
 const { Blog, User } = require('../models')
 
 const tokenExtractor = (req, res, next) => {
-  const authorization = JSON.parse(req.get('authorization'))
+  const authorization = req.get('authorization')
 
   if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
     try {
