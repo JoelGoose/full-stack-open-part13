@@ -10,7 +10,6 @@ const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
 const authorsRouter = require('./controllers/authors')
 const testing = require('./controllers/testing')
-const { syncModels } = require('./models')
 
 app.use(express.json())
 app.use('/api/blogs', blogsRouter)
@@ -24,7 +23,6 @@ app.use(errorHandler)
 
 const start = async () => {
   await connectToDatabase()
-  await syncModels()
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
   })
