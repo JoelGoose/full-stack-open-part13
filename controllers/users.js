@@ -26,8 +26,10 @@ router.post('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res) => {
   let search = [true, false]
-  if (req.query.read) {
-    search = [req.query.read]
+  if (req.query.read === 'true') {
+    search = [true]
+  } else if (req.query.read === 'false') {
+    search = [false]
   }
   const user = await User.findByPk(req.params.id, {
     include: {
