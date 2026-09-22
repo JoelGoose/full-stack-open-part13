@@ -7,6 +7,7 @@ router.post('/', async (req, res, next) => {
   try {
     const readinglist = await ReadingLists.create(req.body)
     return res.status(200).json({
+      id: readinglist.id,
       blog_id: readinglist.blogId,
       user_id: readinglist.userId,
       read: readinglist.read
@@ -26,7 +27,7 @@ router.put('/:id', tokenExtractor, async (req, res) => {
   if (reading.userId !== req.decodedToken.id) {
     return res.status(401).end()
   }
-  if (reading && req.body.read) {
+  if (reading && typeof req.body.read === 'boolean') {
     reading.read = req.body.read
     await reading.save()
     return res.status(200).json(reading)

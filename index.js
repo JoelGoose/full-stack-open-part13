@@ -15,7 +15,7 @@ const testing = require('./controllers/testing')
 app.use(express.json())
 app.use('/api/blogs', blogsRouter)
 app.use('/api/users', usersRouter)
-app.use('/api/login', loginRouter)
+app.use('/api', loginRouter)
 app.use('/api/authors', authorsRouter)
 app.use('/api/readinglists', readingsListRouter)
 if (TESTING) {
